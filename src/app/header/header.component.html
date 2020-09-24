@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#">
+    <img src="assets/img/user.png" alt="">
+  </a>
+  <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#"
+          (click)="onSelect('home-page')">HOME</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#"
+        (click)="onSelect('make-test')">MAKE TEST</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"
+        (click)="onSelect('preview-mode')">PREIVEW TEST</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"
+        (click)="onSelect('student-test')">STUDENT TEST</a>
+      </li>
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          MY ACCOUNT
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="#">My performance</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-danger" href="#">LOG OUT</a>
+          <a class="dropdown-item text-primary" href="#">SIGN IN</a>
+          <a class="dropdown-item" href="#">SIGN UP</a>
+        </div>
+      </li> -->
+    </ul>
+  </div>
+</nav>

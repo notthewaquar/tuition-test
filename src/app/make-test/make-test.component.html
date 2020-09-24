@@ -2,9 +2,9 @@
   class="make-test"
   (ngSubmit)="onSubmit()"
   #examTestForm="ngForm">
-  <div class="form-group d-flex select-class-div row">
-    <div class="col-md-4 col-12">
-      <label for="selectClass" class="exam-class-label text-light">Select Class: </label>
+  <div class="form-group d-flex select-class-div row my-card">
+    <div class="col-lg-3 col-md-6 col-12">
+      <label for="selectClass" class="exam-class-label">Select Class: </label>
       <select 
         class="form-control exam-class" 
         id="selectClass" 
@@ -23,8 +23,8 @@
         <option>1</option>
       </select>
     </div>
-    <div class="col-md-4 col-12">
-      <label for="selectClass" class="exam-class-label text-light">No. of Question: </label>
+    <div class="col-lg-3 col-md-6 col-12">
+      <label for="selectClass" class="exam-class-label">No. of Question: </label>
       <input 
         type="number" 
         id="examDate" 
@@ -36,8 +36,8 @@
         required
         #noOfQues>
     </div>
-    <div class="col-md-4 col-12">
-      <label for="selectClass" class="exam-class-label text-light">Each Question Marks: </label>
+    <div class="col-lg-3 col-md-6 col-12">
+      <label for="selectClass" class="exam-class-label">Each Question Marks: </label>
       <input 
         type="number" 
         id="examDate" 
@@ -49,14 +49,14 @@
         required
         #quesMarks>
     </div>
-    <div class="col-12 full-marks mt-2">
-      <label for="selectClass" class="exam-class-label text-light">
-        Total Marks: 
-        <span class="btn btn-light" >{{noOfQues.value*quesMarks.value}}</span>
-      </label>
+    <div class="col-lg-3 col-md-6 col-12 full-marks">
+      <label for="selectClass" class="exam-class-label">Total Marks</label>
+      <div class="btn btn-primary d-block">
+        {{noOfQues.value*quesMarks.value}}
+      </div>
     </div>
   </div>
-  <div class="card">
+  <div class="card my-shadow exam-date-time-div">
     <div class="card-header bg-warning">
       EXAM DATE AND TIME
     </div>

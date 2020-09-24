@@ -1,5 +1,5 @@
 <div
-  class="card create-question-div"
+  class="card create-question-div my-shadow"
   >
   <!-- ngModelGroup="eachQuestionCard"
   #eachQuestionCard="ngModelGroup" -->
@@ -21,6 +21,7 @@
     id="exam-ans-1"
     aria-describedby="exam-ans-1"
     placeholder="Enter answer 1"
+    [ngClass]="{borderGreen: selectAnswer.value === 'A'}"
     ngModel
     name="answer1"
     required
@@ -32,6 +33,7 @@
     id="exam-ans-2"
     aria-describedby="exam-ans-2"
     placeholder="Enter answer 2"
+    [ngClass]="{borderGreen: selectAnswer.value === 'B'}"
     ngModel
     name="answer2"
     required
@@ -43,6 +45,7 @@
     id="exam-ans-3"
     aria-describedby="exam-ans-3"
     placeholder="Enter answer 3"
+    [ngClass]="{borderGreen: selectAnswer.value === 'C'}"
     ngModel
     name="answer3"
     required
@@ -54,11 +57,12 @@
     id="exam-ans-4"
     aria-describedby="exam-ans-4"
     placeholder="Enter answer 4"
+    [ngClass]="{borderGreen: selectAnswer.value === 'D'}"
     ngModel
     name="answer4"
     required
     #examAns4
-  ></textarea>
+    ></textarea>
   <div class="input-group mb-3 select-answer-div">
     <div class="input-group-prepend">
       <label class="input-group-text" for="selectAnswer">Select Answer:</label>
@@ -68,6 +72,7 @@
       id="selectAnswer"
       name="correct-answer"
       required
+      ngModel
       #selectAnswer
     >
       <option selected value="0" disabled selected hidden>Choose...</option>
@@ -93,4 +98,3 @@
     </button>
   </div>
 </div>
-normal 

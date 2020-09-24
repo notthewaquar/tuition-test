@@ -5,11 +5,11 @@ html {
 }
 
 body {
-  background-color: #000;
+  background-color: #f4f4f4;
   scroll-behavior: smooth;
   text-align: center;
   margin: 0;
-  padding: 120px 20px 0;
+  padding: 100px 20px 0;
   color: #111;
   overflow-x: hidden;
   font-family: roboto, sans-serif;
@@ -17,7 +17,7 @@ body {
 
 @media only screen and (max-width: 500px) {
   body {
-    padding: 100px 0px 0;
+    padding: 100px 5px 0;
   }
 }
 
@@ -37,7 +37,7 @@ a:active {
 }
 /* navbar */
 nav .navbar-brand img {
-  width: 70px;
+  width: 30px;
   height: auto;
 }
 nav .nav-link {
@@ -45,10 +45,30 @@ nav .nav-link {
   font-weight: 700;
 }
 nav.bg-light {
-  background-color: #ff9800 !important;
+  background-color: #36f4c6 !important;
+  background: linear-gradient(to right, #25aae1, #4481eb);
 }
 nav .dropdown-item {
   font-weight: 500;
+}
+.navbar-light .navbar-nav .nav-link {
+  font-size: 15px;
+  color: #fff !important;
+  text-shadow: 1px 1px 2px #444;
+  margin-left: 5px;
+}
+.navbar-light .navbar-nav .nav-item.active .nav-link,
+.navbar-light .navbar-nav .nav-link:hover {
+  background-color: #fff;
+  color: #000 !important;
+  text-shadow: 1px 1px 2px #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px -5px #000;
+}
+.navbar-nav .dropdown-menu {
+  position: absolute;
+  left: auto;
+  right: 0;
 }
 @media only screen and (max-width: 500px) {
   nav .navbar-brand img {
@@ -57,17 +77,25 @@ nav .dropdown-item {
   }
 }
 /* make test */
+.my-card {
+  margin: 0 0 10px 0;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px -5px #111;
+  padding: 10px 5px;
+}
+.my-shadow {
+  box-shadow: 0 0 10px -5px #111;
+}
 .make-test label {
   font-size: 22px;
   font-weight: 700;
 }
 .select-class-div > div:not(.full-marks) {
-  display: flex;
-  justify-content: space-between;
 }
 .full-marks {
-  display: flex;
-  justify-content: center;
 }
 .full-marks span {
   font-size: 24px;
@@ -77,10 +105,14 @@ nav .dropdown-item {
 .make-test .exam-class,
 .make-test .each-q-marks,
 .make-test .no-of-q {
-  width: 30%;
+  /* width: 30%; */
 }
 app-each-question {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+.borderGreen {
+  border-color: #28a745 !important;
+  background-color: #b2ffb5;
 }
 .create-question-div {
   height: 100%;
@@ -89,10 +121,11 @@ app-each-question {
   font-size: 22px;
   font-weight: 700;
 }
+.exam-date-time-div label,
 .make-test .exam-class-label {
-  margin: 0;
   align-self: center;
-  margin-right: 15px;
+  font-size: 18px;
+  margin: 0 0 10px;
 }
 .date-time label {
   color: #111111;
@@ -136,6 +169,20 @@ app-each-question {
 .edit-reset .btn:first-child {
   /* margin-right: 10px; */
 }
+.btn-group.edit-del button {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 10px;
+}
+.btn-group.edit-del button svg {
+  height: 15px;
+  width: 15px;
+}
+.btn-group.edit-del button path {
+  fill: #fff;
+}
 /* each question */
 .bgSuccess {
   color: #fff !important;
@@ -159,6 +206,16 @@ app-each-question {
 .create-question-div .btn-group .btn {
   /* height: 30px; */
 }
+@media only screen and (max-width: 770px) {
+  .exam-date-time-div label,
+  .make-test .exam-class-label {
+    font-size: 22px;
+  }
+  .select-class-div select,
+  .select-class-div .btn {
+    margin: 0 0 10px;
+  }
+}
 @media only screen and (max-width: 500px) {
   .select-class-div > div:not(.full-marks) {
     margin-bottom: 20px;
@@ -167,7 +224,6 @@ app-each-question {
     margin-bottom: 10px;
   }
   .make-test .exam-class {
-    width: 30%;
   }
   .select-class-div {
     justify-content: space-between;
