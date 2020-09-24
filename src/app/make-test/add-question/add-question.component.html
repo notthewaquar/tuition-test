@@ -1,0 +1,96 @@
+<div
+  class="card create-question-div"
+  >
+  <!-- ngModelGroup="eachQuestionCard"
+  #eachQuestionCard="ngModelGroup" -->
+  <textarea
+    class="form-control exam-question"
+    id="examQuestion"
+    aria-describedby="examQuestion"
+    placeholder="Enter your question"
+    ngModel
+    name="question"
+    required
+    #examQuestion
+  ></textarea>
+  <hr />
+  <small class="text-dark text-left">Answers:</small>
+  <textarea
+    rows="1"
+    class="form-control create-ans"
+    id="exam-ans-1"
+    aria-describedby="exam-ans-1"
+    placeholder="Enter answer 1"
+    ngModel
+    name="answer1"
+    required
+    #examAns1
+  ></textarea>
+  <textarea
+    rows="1"
+    class="form-control create-ans"
+    id="exam-ans-2"
+    aria-describedby="exam-ans-2"
+    placeholder="Enter answer 2"
+    ngModel
+    name="answer2"
+    required
+    #examAns2
+  ></textarea>
+  <textarea
+    rows="1"
+    class="form-control create-ans"
+    id="exam-ans-3"
+    aria-describedby="exam-ans-3"
+    placeholder="Enter answer 3"
+    ngModel
+    name="answer3"
+    required
+    #examAns3
+  ></textarea>
+  <textarea
+    rows="1"
+    class="form-control create-ans"
+    id="exam-ans-4"
+    aria-describedby="exam-ans-4"
+    placeholder="Enter answer 4"
+    ngModel
+    name="answer4"
+    required
+    #examAns4
+  ></textarea>
+  <div class="input-group mb-3 select-answer-div">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="selectAnswer">Select Answer:</label>
+    </div>
+    <select
+      class="custom-select"
+      id="selectAnswer"
+      name="correct-answer"
+      required
+      #selectAnswer
+    >
+      <option selected value="0" disabled selected hidden>Choose...</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+    </select>
+  </div>
+  <div class="form-group edit-reset btn-group justify-content-between">
+    <button 
+      type="button" 
+      class="btn btn-success form-control"
+      (click)="addQuestion()"
+      >Add Qestion</button>
+    <!-- <button type="button" class="btn btn-primary form-control">Edit</button> -->
+    <button
+      type="button"
+      class="btn btn-danger form-control"
+      >
+      <!-- (click)="eachQuestionCard.reset()" -->
+      Reset
+    </button>
+  </div>
+</div>
+normal 

@@ -1,0 +1,118 @@
+<form 
+  class="make-test"
+  (ngSubmit)="onSubmit()"
+  #examTestForm="ngForm">
+  <div class="form-group d-flex select-class-div row">
+    <div class="col-md-4 col-12">
+      <label for="selectClass" class="exam-class-label text-light">Select Class: </label>
+      <select 
+        class="form-control exam-class" 
+        id="selectClass" 
+        ngModel
+        name="select-class"
+        required>
+        <option disabled selected hidden value="0">Choose...</option>
+        <option>9</option>
+        <option>8</option>
+        <option>7</option>
+        <option>6</option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+    </div>
+    <div class="col-md-4 col-12">
+      <label for="selectClass" class="exam-class-label text-light">No. of Question: </label>
+      <input 
+        type="number" 
+        id="examDate" 
+        placeholder="0"
+        class="form-control no-of-q text-center"
+        min="1"
+        ngModel
+        name="exam-date"
+        required
+        #noOfQues>
+    </div>
+    <div class="col-md-4 col-12">
+      <label for="selectClass" class="exam-class-label text-light">Each Question Marks: </label>
+      <input 
+        type="number" 
+        id="examDate" 
+        placeholder="0"
+        class="form-control each-q-marks text-center"
+        min="1"
+        ngModel
+        name="exam-date"
+        required
+        #quesMarks>
+    </div>
+    <div class="col-12 full-marks mt-2">
+      <label for="selectClass" class="exam-class-label text-light">
+        Total Marks: 
+        <span class="btn btn-light" >{{noOfQues.value*quesMarks.value}}</span>
+      </label>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header bg-warning">
+      EXAM DATE AND TIME
+    </div>
+    <div class="card-body date-time">
+      <div class="form-group row justify-content-between">
+        <div class="col-md-4 col-12">
+          <label for="examDate">Exam Date</label>
+          <input 
+            type="date" 
+            id="examDate" 
+            class="form-control exam-date"
+            ngModel
+            name="exam-date"
+            required>
+        </div>
+        <div class="col-md-4 col-12">
+          <label for="examStartTime">Start Exam Time</label>
+          <input 
+            type="time" 
+            id="examStartTime"
+            class="form-control exam-time"
+            ngModel
+            name="exam-start-time"
+            required>
+        </div>
+        <div class="col-md-4 col-12">
+          <label for="examEndTime">End Exam Time</label>
+          <input 
+            type="time" 
+            id="examEndTime"  
+            class="form-control exam-time"
+            ngModel
+            name="exam-end-time"
+            required>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-add-question
+    (questionAdded)="onQuestionAdded($event)"
+    ></app-add-question>
+  <div class="row">
+    <app-each-question
+      class="col-lg-4 col-md-6 col-12"
+      *ngFor="let eachQ of allQuestions; let i = index"
+      [eachQuestion]="eachQ"
+      [id]="i"
+      ></app-each-question>
+  </div>
+  
+  <app-edit-question></app-edit-question>
+
+  <button 
+    type="submit" 
+    class="btn btn-success question-submit"
+    [disabled]="!examTestForm.valid"
+    >SUBMIT</button>
+
+</form>
