@@ -8,16 +8,13 @@ import { testQuestion } from '../testQuestion.model';
 })
 export class EachQuestionComponent implements OnInit {
   @Input() eachQuestion: testQuestion;
-  // @Input() question: string;
-  // @Input() ans1: string;
-  // @Input() ans2: string;
-  // @Input() ans3: string;
-  // @Input() ans4: string;
-  // @Input() id: number;
+  @Input() id: number;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  editEachQuestion(){
+    //
+  }
 }

@@ -1,12 +1,24 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+<nav 
+  id="myHeader"
+  class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
   <a class="navbar-brand" href="#">
     <img src="assets/img/user.png" alt="">
   </a>
-  <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button 
+    class="navbar-toggler bg-light" 
+    type="button" 
+    data-toggle="collapse" 
+    data-target="#navbarSupportedContent" 
+    aria-controls="navbarSupportedContent" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation"
+    (click)="shouldShow = !shouldShow">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div 
+    class="collapse navbar-collapse" id="navbarSupportedContent"
+    [ngClass]="{show: shouldShow, hide: !shouldShow}">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" href="#"

@@ -9,7 +9,7 @@ body {
   scroll-behavior: smooth;
   text-align: center;
   margin: 0;
-  padding: 100px 20px 0;
+  padding: 100px 0px 0;
   color: #111;
   overflow-x: hidden;
   font-family: roboto, sans-serif;
@@ -17,7 +17,7 @@ body {
 
 @media only screen and (max-width: 500px) {
   body {
-    padding: 100px 5px 0;
+    padding: 100px 0px 0;
   }
 }
 
@@ -36,9 +36,16 @@ a:active {
   transition: 0.3s;
 }
 /* navbar */
+nav .navbar-brand {
+  padding: 0;
+}
 nav .navbar-brand img {
-  width: 30px;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  max-width: 40px;
+  max-height: 40px;
 }
 nav .nav-link {
   font-size: 20px;
@@ -93,19 +100,18 @@ nav .dropdown-item {
   font-size: 22px;
   font-weight: 700;
 }
-.select-class-div > div:not(.full-marks) {
-}
-.full-marks {
-}
 .full-marks span {
   font-size: 24px;
   padding: 0 30px 0;
   margin: 0 0 0 20px;
 }
-.make-test .exam-class,
-.make-test .each-q-marks,
-.make-test .no-of-q {
-  /* width: 30%; */
+form.make-test {
+  padding: 0 20px;
+}
+@media only screen and (max-width: 500px) {
+  form.make-test {
+    padding: 0 5px;
+  }
 }
 app-each-question {
   margin-bottom: 20px;
