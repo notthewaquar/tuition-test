@@ -3,6 +3,16 @@
   >
   <!-- ngModelGroup="eachQuestionCard"
   #eachQuestionCard="ngModelGroup" -->
+  <input type="hidden"
+    class="form-control exam-question"
+    id="questionNumber"
+    aria-describedby="examQuestion"
+    placeholder="Q. No:"
+    ngModel
+    name="questionNumber"
+    required
+    value=""
+    #questionNumber>
   <textarea
     class="form-control exam-question"
     id="examQuestion"

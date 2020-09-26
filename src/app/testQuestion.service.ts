@@ -1,13 +1,15 @@
-import { EventEmitter } from 'events';
+
+import { EventEmitter } from '@angular/core';
 
 import { testQuestion } from './make-test/testQuestion.model';
 
 export class TestQuestionService {
-
-  // testQuestionSelected = new EventEmitter<testQuestion>();
+  testQuestionChanged = new EventEmitter<testQuestion[]>();
+  questionNumber = 0;
 
   private allQuestions: testQuestion[] = [
     new testQuestion(
+      1,
       'What is the Capital of India?',
       'Kolkata',
       'Chennai',
@@ -19,5 +21,11 @@ export class TestQuestionService {
 
   getTestQuestion() {
     return this.allQuestions.slice();
+  }
+
+  // tslint:disable-next-line: no-shadowed-variable
+  addTestQuestion(testQuestion: testQuestion) {
+    this.allQuestions.push(testQuestion);
+    this.testQuestionChanged.emit(this.allQuestions.slice());
   }
 }

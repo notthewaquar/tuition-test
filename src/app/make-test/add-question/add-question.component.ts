@@ -1,12 +1,11 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   OnInit,
-  Output,
   ViewChild
 } from '@angular/core';
 
+import { TestQuestionService } from 'src/app/testQuestion.service';
 import { testQuestion } from '../testQuestion.model';
 
 @Component({
@@ -15,6 +14,7 @@ import { testQuestion } from '../testQuestion.model';
   styleUrls: ['./add-question.component.css']
 })
 export class AddQuestionComponent implements OnInit {
+  @ViewChild('questionNumber') questionNumberInputRef: ElementRef;
   @ViewChild('examQuestion') questionInputRef: ElementRef;
   @ViewChild('examAns1') ans1InputRef: ElementRef;
   @ViewChild('examAns2') ans2InputRef: ElementRef;
@@ -22,14 +22,14 @@ export class AddQuestionComponent implements OnInit {
   @ViewChild('examAns4') ans4InputRef: ElementRef;
   @ViewChild('selectAnswer') selectAnswerInputRef: ElementRef;
   // tslint:disable-next-line: no-output-on-prefix
-  @Output() questionAdded = new EventEmitter<testQuestion>();
 
-  constructor() { }
+  constructor(private testQuestionService: TestQuestionService) { }
 
   ngOnInit(): void {
   }
 
   addQuestion() {
+    const questionNumber = this.questionNumberInputRef.nativeElement.value;
     const question = this.questionInputRef.nativeElement.value;
     const ans1 = this.ans1InputRef.nativeElement.value;
     const ans2 = this.ans2InputRef.nativeElement.value;
@@ -42,15 +42,10 @@ export class AddQuestionComponent implements OnInit {
       ans2,
       ans3,
       ans4,
-      selectAnswer
+      selectAnswer,
+      questionNumber
     );
-    this.questionAdded.emit(newQuestion);
-    console.log('question =' + question,
-                'answer 1 =' + ans1,
-                'answer 2 =' + ans2,
-                'asnwer 3 =' + ans3,
-                'asnwer 4 =' + ans4,
-                'correct Ans =' + selectAnswer);
-    // console.log(newQuestion);
+    this.testQuestionService.addTestQuestion(newQuestion);
+    // console.log("add Question conp");
   }
 }

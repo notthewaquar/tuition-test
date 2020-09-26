@@ -1,21 +1,9 @@
 <div class="conatiner-fluid">
-  <app-header (featureSelected)="onNavigate($event)"></app-header>
+  <app-header></app-header>
   <div class="row">
     <div class="col-12">
-      <app-home-page
-      *ngIf="loadedFeature === 'home-page'"></app-home-page>
-    </div>
-    <div class="col-12">
-      <app-make-test
-      *ngIf="loadedFeature === 'make-test'"></app-make-test>
-    </div>
-    <div class="col-12">
-      <app-test-preview
-      *ngIf="loadedFeature === 'preview-mode'"></app-test-preview>
-    </div>
-    <div class="col-12">
-      <app-student-test
-      *ngIf="loadedFeature === 'student-test'"></app-student-test>
+      <!-- <app-home-page *ngIf="loadedFeature === 'home-page'"></app-home-page> -->
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

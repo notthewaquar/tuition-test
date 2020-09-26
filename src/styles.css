@@ -121,7 +121,7 @@ app-each-question {
   background-color: #b2ffb5;
 }
 .create-question-div {
-  height: 100%;
+  /* height: 100%; */
 }
 .make-test .card-header {
   font-size: 22px;
@@ -165,7 +165,7 @@ app-each-question {
   font-size: 24px;
   font-weight: 700;
   width: 100%;
-  margin-top: 30px;
+  margin: 30px 0;
 }
 .edit-reset .btn {
   font-size: 22px;
@@ -173,7 +173,6 @@ app-each-question {
   width: auto;
 }
 .edit-reset .btn:first-child {
-  /* margin-right: 10px; */
 }
 .btn-group.edit-del button {
   display: flex;

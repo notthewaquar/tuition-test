@@ -1,1 +1,26 @@
-
+.preview-div {
+  padding: 0 20px 10px;
+}
+@media only screen and (max-width: 500px) {
+  .preview-div {
+    padding: 0 5px 10px;
+  }
+}
+.card {
+  margin-bottom: 10px;
+}
+.card-header {
+  font-size: 22px;
+  font-weight: 700;
+}
+.row.exam-info {
+  margin: 0;
+}
+.row.exam-info > div {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px;
+}
+.row.exam-info > div span {
+  color: #673ab7;
+}

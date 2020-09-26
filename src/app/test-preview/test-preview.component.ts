@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { testQuestion } from '../make-test/testQuestion.model';
+import { TestQuestionService } from '../testQuestion.service';
 
 @Component({
   selector: 'app-test-preview',

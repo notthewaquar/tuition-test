@@ -2,6 +2,7 @@
 export class testQuestion {
 
   constructor(
+    public quesno: number,
     public question: string,
     public ans1: string,
     public ans2: string,
