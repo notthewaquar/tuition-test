@@ -9,13 +9,20 @@ export class TestQuestionService {
 
   private allQuestions: testQuestion[] = [
     new testQuestion(
-      1,
       'What is the Capital of India?',
       'Kolkata',
       'Chennai',
       'New Delhi',
       'Mumbai' ,
       'C'
+    ),
+    new testQuestion(
+      'Sun rises from the _____ ?',
+      'East',
+      'West',
+      'North',
+      'South' ,
+      'A'
     )
   ];
 

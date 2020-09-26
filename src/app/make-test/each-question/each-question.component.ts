@@ -7,14 +7,10 @@ import { testQuestion } from '../testQuestion.model';
   styleUrls: ['./each-question.component.css']
 })
 export class EachQuestionComponent implements OnInit {
-  @Input() eachQuestion: testQuestion;
-  @Input() id: number;
+
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-  editEachQuestion(){
-    //
   }
 }

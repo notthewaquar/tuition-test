@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { testQuestion } from '../make-test/testQuestion.model';
 import { TestQuestionService } from '../testQuestion.service';
@@ -9,10 +9,15 @@ import { TestQuestionService } from '../testQuestion.service';
   styleUrls: ['./test-preview.component.css']
 })
 export class TestPreviewComponent implements OnInit {
+  allQuestions: testQuestion[];
 
-  constructor() { }
+  constructor(private testQuestionService: TestQuestionService) { }
 
   ngOnInit(): void {
+    this.allQuestions = this.testQuestionService.getTestQuestion();
   }
 
+  calculateMarks(){
+    //
+  }
 }

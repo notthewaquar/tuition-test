@@ -21,22 +21,26 @@
     [ngClass]="{show: shouldShow, hide: !shouldShow}">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item"
-        routerLinkActive="active">
+        routerLinkActive="active"
+        (click)="shouldShow = !shouldShow">
         <a class="nav-link"
           routerLink="/home-page">HOME</a>
       </li>
       <li class="nav-item"
-        routerLinkActive="active">
+        routerLinkActive="active"
+        (click)="shouldShow = !shouldShow">
         <a class="nav-link"
         routerLink="/make-test">MAKE TEST</a>
       </li>
       <li class="nav-item"
-        routerLinkActive="active">
+        routerLinkActive="active"
+        (click)="shouldShow = !shouldShow">
         <a class="nav-link"
         routerLink="/preview-mode">PREIVEW TEST</a>
       </li>
       <li class="nav-item"
-        routerLinkActive="active">
+        routerLinkActive="active"
+        (click)="shouldShow = !shouldShow">
         <a class="nav-link"
         routerLink="/student-test">STUDENT TEST</a>
       </li>

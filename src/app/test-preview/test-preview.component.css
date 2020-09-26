@@ -24,3 +24,14 @@
 .row.exam-info > div span {
   color: #673ab7;
 }
+.radio-hide {
+  position: absolute;
+  top: -999999px;
+  left: -999999px;
+  visibility: hidden;
+}
+input:checked + label {
+  color: #fff !important;
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}

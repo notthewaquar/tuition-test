@@ -27,21 +27,75 @@
         Time Left: <span>20 mins</span>
       </div>
       <div class="col-md-3 col-6">
-        Lorem: <span>XX</span>
+        Correct: <span>2</span>
       </div>
     </div>
-  </div>  
+  </div>
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-12 mb-2">
+    <div class="col-lg-4 col-md-6 col-12 mb-2"
+      *ngFor="let eachQuestion of allQuestions; let i = index">
       <div class="card create-question-div my-shadow">
-        <h5><b>Q.1</b> What is the Capital of India?</h5>
+        <input 
+          type="hidden" 
+          name="preview-answer"
+          value="{{eachQuestion.correct}}"
+          #selectedAnswer>
+        <h5>
+          <b>Q.{{i + 1}}</b> 
+          {{ eachQuestion.question }}
+        </h5>
         <hr>
         <small class="text-dark text-left">Answers:</small>
-        <p class="bg-light text-left"><b>A.</b> Kolkata</p>
-        <p class="bg-light text-left"><b>B.</b> Chennai</p>
-        <p class="bg-light text-left bgSuccess"><b>C.</b> New Delhi</p>
-        <p class="bg-light text-left"><b>D.</b> Mumbai</p>
+        <input 
+          type="radio" 
+          id="a{{i}}" 
+          class="radio-hide" 
+          name="ans{{i}}" 
+          value="A">
+        <label 
+          for="a{{i}}"
+          class="btn btn-light text-left mb-2">
+          <b>A.</b> {{eachQuestion.ans1}}</label>
+        <input 
+          type="radio" 
+          id="b{{i}}" 
+          class="radio-hide" 
+          name="ans{{i}}" 
+          value="B">
+        <label 
+          for="b{{i}}"
+          class="btn btn-light text-left mb-2">
+          <b>B.</b> {{eachQuestion.ans2}}</label>
+        <input 
+          type="radio" 
+          id="c{{i}}" 
+          class="radio-hide" 
+          name="ans{{i}}" 
+          value="C">
+        <label 
+          for="c{{i}}"
+          class="btn btn-light text-left mb-2">
+          <b>C.</b> {{eachQuestion.ans3}}</label>
+        <input 
+          type="radio" 
+          id="d{{i}}" 
+          class="radio-hide" 
+          name="ans{{i}}" 
+          value="D">
+        <label 
+          for="d{{i}}"
+          class="btn btn-light text-left mb-2">
+          <b>D.</b> {{eachQuestion.ans4}}</label>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button 
+        type="button"
+        class="btn btn-success m-3 btn-lg"
+        click=(calculateMarks())
+        >Submit Answers</button>
     </div>
   </div>
 </div>
