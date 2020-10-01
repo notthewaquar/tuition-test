@@ -1,10 +1,10 @@
-
-import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { testQuestion } from './make-test/testQuestion.model';
 
 export class TestQuestionService {
-  testQuestionChanged = new EventEmitter<testQuestion[]>();
+  testQuestionChanged = new Subject<testQuestion[]>();
+  startedEditing = new Subject<number>();
   questionNumber = 0;
 
   private allQuestions: testQuestion[] = [
@@ -29,10 +29,22 @@ export class TestQuestionService {
   getTestQuestion() {
     return this.allQuestions.slice();
   }
+  getEachTestQuestion(index: number){
+    return this.allQuestions[index];
+  }
 
   // tslint:disable-next-line: no-shadowed-variable
   addTestQuestion(testQuestion: testQuestion) {
     this.allQuestions.push(testQuestion);
-    this.testQuestionChanged.emit(this.allQuestions.slice());
+    this.testQuestionChanged.next(this.allQuestions.slice());
+  }
+
+  updateTestQuestion(index: number, editTestQuestion: testQuestion) {
+    this.allQuestions[index] = editTestQuestion;
+    this.testQuestionChanged.next(this.allQuestions.slice());
+  }
+  deleteTestQuestion(index: number) {
+    this.allQuestions.splice(index, 1);
+    this.testQuestionChanged.next(this.allQuestions.slice());
   }
 }
