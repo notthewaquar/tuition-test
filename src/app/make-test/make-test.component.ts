@@ -5,13 +5,42 @@ import {
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { TestQuestionService } from '../testQuestion.service';
 import { testQuestion } from './testQuestion.model';
 @Component({
   selector: 'app-make-test',
   templateUrl: './make-test.component.html',
-  styleUrls: ['./make-test.component.css']
+  styleUrls: ['./make-test.component.css'],
+  animations: [
+    trigger(
+      'inOutAnimation',
+      [
+        transition(':enter', [
+          style({transform: 'scale(0.8)', opacity: .3}),
+          animate('100ms', style({transform: 'scale(1)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'scale(1)', opacity: 1}),
+          animate('100ms', style({transform: 'scale(0.8)', opacity: .3}))
+        ])
+      ]
+    ),
+    trigger(
+      'popUp',
+      [
+        transition(':enter', [
+          style({transform: 'scale(0.5)', opacity: .3}),
+          animate('80ms', style({transform: 'scale(1)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'scale(1)', opacity: 1}),
+          animate('80ms', style({transform: 'scale(0.5)', opacity: .3}))
+        ])
+      ]
+    )
+  ]
 })
 export class MakeTestComponent implements OnInit, OnDestroy {
   id: number;
@@ -106,6 +135,7 @@ export class MakeTestComponent implements OnInit, OnDestroy {
       selectAnswer
     );
     this.testQuestionService.addTestQuestion(newQuestion);
+    this.resetQuestion();
   }
   // each question
 
@@ -149,6 +179,13 @@ export class MakeTestComponent implements OnInit, OnDestroy {
   deleteTest() {
      this.testQuestionService.deleteTestQuestion(this.editedItemIndex);
      this.deleteMode = false;
+    }
+  deleteTestCard(index: number){
+    console.log(index);
+    this.testQuestionService.startedEditing.next(index);
+  }
+  resetQuestion() {
+    this.testQuestionForm.reset();
   }
   // forbiddenOption(control: FormControl): {[s: string]: Boolean} {
   //   if (this.forbiddenOptions.indexOf(control.value)) {

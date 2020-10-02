@@ -1,28 +1,11 @@
 #staticBackdrop {
-  background: rgb(0 0 0 / 35%);
+  /* background: rgb(0 0 0 / 35%); */
 }
 .modal.hide {
   display: none;
 }
 .modal.show {
   display: block;
-}
-.close-modal {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: #ff055a;
-  color: #fff;
-  font-size: 5px;
-  height: 0;
-  width: 0;
-  text-align: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  border-radius: 50px;
-  opacity: 0;
-  transform: translate(50%, -50%);
 }
 .modal-content:hover .close-modal {
   opacity: 1;
@@ -33,4 +16,24 @@
 }
 #staticBackdrop .ans-div {
   font-size: 18px;
+}
+
+/* animation */
+.modal-dialog {
+  max-width: 100% !important;
+  min-height: 100% !important;
+  margin: 0;
+}
+.modal-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.darkBg {
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 50%);
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
 }

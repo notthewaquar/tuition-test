@@ -57,12 +57,6 @@
         {{noOfQues.value*quesMarks.value}}
       </div>
     </div>
-    <div class="col-12">
-      <button 
-        type="button"
-        class="btn btn-success">ADD TIME</button>
-        <!-- (click)="addTime()" -->
-    </div>
   </div>
   <!-- <p 
     *ngIf="!testQuestionForm.get('examClassDiv').valid && testQuestionForm.get('examClassDiv').touched"
@@ -202,28 +196,15 @@
         (click)="addQuestion()">Add Qestion</button>
       <button
         type="button"
+        (click)="resetQuestion()"
         class="btn btn-danger form-control">
         Reset
       </button>
     </div>
   </div>
-  <!-- <div 
-    class="row"
-    formArrayName="test">
-    <h4>Lorem ipsum dolor sit amet consectetur adip</h4>
-    <button 
-      type="button"
-      class="btn btn-success"
-      (click)="newbtn()">Add input</button>
-      <div 
-        class="form-group"
-        *ngFor="let testControl of testQuestionForm.get('test')['controls']; let i = index">
-        <p class="form-control"
-          [formControlName]="i"></p>
-      </div>
-  </div> -->
   <div class="row">
     <div class="col-lg-4 col-md-6 col-12"
+      [@popUp]
       *ngFor="let eachQuestion of allQuestions; let i = index">
       <div class="card create-question-div my-shadow">
         <h5><b>Q.{{i + 1}}</b> {{ eachQuestion.question }}</h5>
@@ -257,8 +238,8 @@
             </button>
             <button 
               type="button" 
-              class="btn btn-sm btn-danger"
-              (click)="deleteMode = true">
+              class="btn btn-sm btn-danger" 
+              (click)="deleteMode = true ; deleteTestCard(i)">
               <svg _ngcontent-riw-c51="" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="" class="svg-inline--fa fa-trash-alt fa-w-14"><path _ngcontent-riw-c51="" fill="currentColor" d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path></svg>
             </button>
           </div>
@@ -269,13 +250,15 @@
   
   <app-edit-question></app-edit-question>
   <!-- edit question -->
+  <div [ngClass]="{darkBg: deleteMode || editMode}"></div>
   <!-- Modal -->  
   <div 
     class="modal fade show" 
     id="staticBackdrop" 
     data-backdrop="static"
     tabindex="-1"
-    *ngIf="editMode"
+    [@inOutAnimation]
+    *ngIf="editMode && !deleteMode"
     formGroupName="editQuestionDiv">
     <!-- [ngClass]="{show: editModal}" -->
     <div class="modal-dialog modal-dialog-centered">
@@ -288,8 +271,6 @@
               formControlName="editQuestion"
               name="editQuestion">
             </textarea>
-          <span class="close-modal"
-          (click)="editMode = false">&times;</span>
         </div>
         <div class="modal-body">
           <textarea
@@ -370,6 +351,7 @@
     class="modal fade show" 
     id="staticBackdrop" 
     *ngIf="deleteMode"
+    [@inOutAnimation]
     data-backdrop="static"
     tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -384,7 +366,7 @@
           <button 
             type="button" 
             class="btn btn-danger"
-            (click)="deleteMode = false">Cancle</button>
+            (click)="deleteMode = false ; editMode = false">Cancle</button>
         </div>
       </div>
     </div>
