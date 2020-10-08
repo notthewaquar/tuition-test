@@ -35,7 +35,7 @@
         min="1"
         name="noQues"
         formControlName="noQues"
-        
+        (focus)="$event.target.select()"
         #noOfQues>
     </div>
     <div class="col-lg-3 col-md-6 col-12">
@@ -48,7 +48,7 @@
         min="1"
         name="eachQuesMark"
         formControlName="eachQuesMark"
-        
+        (focus)="$event.target.select()"
         #quesMarks>
     </div>
     <div class="col-lg-3 col-md-6 col-12 full-marks">
@@ -58,9 +58,11 @@
       </div>
     </div>
   </div>
-  <!-- <p 
-    *ngIf="!testQuestionForm.get('examClassDiv').valid && testQuestionForm.get('examClassDiv').touched"
-    class="help-block bg-danger text-light text-left p-1 pt-2 pl-2 rounded h6">Please enter class and marks details</p> -->
+  <p 
+    *ngIf="
+      !testQuestionForm.get('examClassDiv').valid && 
+      testQuestionForm.get('examClassDiv').touched"
+    class="btn btn-danger btn-sm">Please enter class and marks details</p>
   <div 
     class="card my-shadow exam-date-time-div"
     formGroupName="examTimeDiv">
@@ -137,7 +139,6 @@
       id="makeAns2"
       placeholder="Enter answer 2"
       [ngClass]="{borderGreen: selectAnswer.value === 'B'}"
-      
       name="makeAns2"
       formControlName="makeAns2"
       required
@@ -150,7 +151,6 @@
       id="makeAns3"
       placeholder="Enter answer 3"
       [ngClass]="{borderGreen: selectAnswer.value === 'C'}"
-      
       name="makeAns3"
       formControlName="makeAns3"
       required
@@ -163,7 +163,6 @@
       id="makeAns4"
       placeholder="Enter answer 4"
       [ngClass]="{borderGreen: selectAnswer.value === 'D'}"
-      
       name="makeAns4"
       formControlName="makeAns4"
       required
@@ -202,7 +201,9 @@
       </button>
     </div>
   </div>
-  <div class="row">
+  <div 
+    class="row" 
+    *ngIf="allQuestions.length > 0">
     <div class="col-lg-4 col-md-6 col-12"
       [@popUp]
       *ngFor="let eachQuestion of allQuestions; let i = index">
@@ -247,8 +248,10 @@
       </div>
     </div>
   </div>
+  <p 
+    *ngIf="allQuestions.length <= 0" 
+    class="btn btn-secondary d-block mt-3 my-shadow">No Test Question Added Yet!</p>
   
-  <app-edit-question></app-edit-question>
   <!-- edit question -->
   <div [ngClass]="{darkBg: deleteMode || editMode}"></div>
   <!-- Modal -->  
@@ -269,6 +272,7 @@
               id="editQuestion"
               placeholder="Enter your question"
               formControlName="editQuestion"
+              (focus)="$event.target.select()"
               name="editQuestion">
             </textarea>
         </div>
@@ -279,6 +283,7 @@
             rows="1"
             placeholder="Enter your question"
             formControlName="editAns1"
+            (focus)="$event.target.select()"
             [ngClass]="{borderGreen: testQuestionForm.get('editQuestionDiv.editAnswer').value === 'A'}"
             name="editAns1">
           </textarea>
@@ -288,6 +293,7 @@
             rows="1"
             placeholder="Enter your question"
             formControlName="editAns2"
+            (focus)="$event.target.select()"
             [ngClass]="{borderGreen: testQuestionForm.get('editQuestionDiv.editAnswer').value === 'B'}"
             name="editAns2">
           </textarea>
@@ -297,6 +303,7 @@
             rows="1"
             placeholder="Enter your question"
             formControlName="editAns3"
+            (focus)="$event.target.select()"
             [ngClass]="{borderGreen: testQuestionForm.get('editQuestionDiv.editAnswer').value === 'C'}"
             name="editAns3">
           </textarea>
@@ -306,6 +313,7 @@
             rows="1"
             placeholder="Enter your question"
             formControlName="editAns4"
+            (focus)="$event.target.select()"
             [ngClass]="{borderGreen: testQuestionForm.get('editQuestionDiv.editAnswer').value === 'D'}"
             name="editAns4">
           </textarea>
@@ -356,7 +364,7 @@
     tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <h5 class="p-3">Do you really want to delete?</h5>
+        <h5 class="p-3">Do you really want to delete ?</h5>
         <div class="btn-group">
           <button 
             type="button" 
@@ -372,10 +380,19 @@
     </div>
   </div>
   <!-- edit question -->
+  <hr>
   <button 
     type="submit" 
     class="btn btn-success question-submit"
+    [disabled]="!testQuestionForm.valid"
+    (click)="formErrors()"
     >SUBMIT</button>
-    <!-- [disabled]="!examTestForm.valid" -->
-
+  <div 
+    class="question-counter"
+    [@popUp]
+    *ngIf="this.allQuestions.length > 0">
+    {{ this.allQuestions.length }}
+  </div>
 </form>
+
+<app-edit-question></app-edit-question>

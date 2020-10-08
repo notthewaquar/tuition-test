@@ -8,11 +8,11 @@ import { TestPreviewComponent } from './test-preview/test-preview.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomePageComponent, pathMatch: 'full' },
   { path: 'home-page', component: HomePageComponent },
   { path: 'make-test', component: MakeTestComponent },
   { path: 'preview-mode', component: TestPreviewComponent },
-  { path: 'student-test', component: StudentTestComponent }
+  { path: 'student-test', component: StudentTestComponent },
+  { path: '', component: HomePageComponent, pathMatch: 'full'  }
 ];
 
 @NgModule({

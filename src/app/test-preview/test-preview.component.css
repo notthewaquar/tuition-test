@@ -35,3 +35,14 @@ input:checked + label {
   background-color: #28a745 !important;
   border-color: #28a745 !important;
 }
+.disabled-test {
+  border-width: 0px;
+  padding: 0;
+  background: transparent;
+  width: 30px;
+  display: inline-block;
+  height: auto;
+  border-radius: 0;
+  font-weight: 700;
+  color: #673ab7;
+}

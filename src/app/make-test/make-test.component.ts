@@ -3,7 +3,7 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
@@ -54,7 +54,6 @@ export class MakeTestComponent implements OnInit, OnDestroy {
   deleteMode = false;
   editedItemIndex: number;
   editedItem: testQuestion;
-  // forbiddenOptions = ['0', '1'];
 
   constructor(private testQuestionService: TestQuestionService) { }
 
@@ -87,13 +86,19 @@ export class MakeTestComponent implements OnInit, OnDestroy {
     this.testQuestionForm = new FormGroup({
       examClassDiv: new FormGroup({
         selectClass: new FormControl(null, Validators.required),
-        noQues: new FormControl(null),
-        eachQuesMark: new FormControl(null),
+        noQues: new FormControl(25, [
+          Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/)
+        ]),
+        eachQuesMark: new FormControl(1, [
+          Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/)
+        ]),
       }),
       examTimeDiv: new FormGroup({
-        examDate: new FormControl(null),
-        examStartTime: new FormControl('09:00'),
-        examEndTime: new FormControl('10:00')
+        examDate: new FormControl(null, Validators.required),
+        examStartTime: new FormControl('09:00', Validators.required),
+        examEndTime: new FormControl('10:00', Validators.required)
       }),
       makeQuestionDiv: new FormGroup({
         makeQuestion: new FormControl(null),
@@ -110,8 +115,7 @@ export class MakeTestComponent implements OnInit, OnDestroy {
         editAns3: new FormControl(null),
         editAns4: new FormControl(null),
         editAnswer: new FormControl(0)
-      }),
-      test: new FormArray([]),
+      })
     });
   }
   ngOnDestroy(): void {
@@ -187,12 +191,10 @@ export class MakeTestComponent implements OnInit, OnDestroy {
   resetQuestion() {
     this.testQuestionForm.reset();
   }
-  // forbiddenOption(control: FormControl): {[s: string]: Boolean} {
-  //   if (this.forbiddenOptions.indexOf(control.value)) {
-  //     return {'option is forbidden': true};
-  //   }
-  //   return null;
-  // }
+
+  formErrors() {
+    console.log('hello');
+  }
   // newbtn(){
   //   const control = new FormControl(null);
   //   (this.testQuestionForm.get('test') as FormArray).push(control);

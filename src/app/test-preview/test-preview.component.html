@@ -1,101 +1,135 @@
 <div class="preview-div">
-  <div class="card">
-    <div class="card-header bg-warning">Exam Test Paper</div>
-    <div class="row exam-info text-left">
-      <div class="col-md-3 col-6">
-        Class: <span>6</span>
+  <form
+    [formGroup]="previewForm"
+    (ngSubmit)="onSubmit()">
+    <div class="card">
+      <div class="card-header bg-warning">Exam Test Paper</div>
+      <div class="row exam-info text-left">
+        <div class="col-md-3 col-6">
+          Class: <span>6</span>
+        </div>
+        <div class="col-md-3 col-6">
+          No. of Ques.: 
+          <!-- <span>{{allQuestions.length}}</span> -->
+          <input 
+            type="number"
+            id="noOfQues"
+            class="form-control disabled-test"
+            formControlName="noOfQues">
+        </div>
+        <div class="col-md-3 col-6">
+          Each Ques. Marks: <span>1</span>
+        </div>
+        <div class="col-md-3 col-6">
+          Total Marks: <span>25</span>
+        </div>
       </div>
-      <div class="col-md-3 col-6">
-        No. of Ques.: <span>25</span>
+      <hr>
+      <div class="row exam-info text-left">
+        <div class="col-md-3 col-6">
+          Attempted: <span>15</span>
+        </div>
+        <div class="col-md-3 col-6">
+          Ques. Left: <span>10</span>
+        </div>
+        <div class="col-md-3 col-6">
+          Time Left: <span>20 mins</span>
+        </div>
+        <div class="col-md-3 col-6">
+          Correct: <span>2</span>
+        </div>
       </div>
-      <div class="col-md-3 col-6">
-        Each Ques. Marks: <span>1</span>
-      </div>
-      <div class="col-md-3 col-6">
-        Total Marks: <span>25</span>
+    </div>
+    <div class="row">
+      <!-- <button type="button" (click)="patchValueOfCheck()" class="btn btn-warning mx-auto">ADD TEST</button> -->
+    </div>
+    <div 
+      class="row"
+      formArrayName="eachTestCard">
+      <div class="col-lg-3 col-md-4 col-12 mb-2"
+        *ngFor="let eachTestControl of allQuestions; let i = index">
+        <div 
+          class="card create-question-div my-shadow"
+          [formGroupName]="i">
+          <input 
+            type="text"
+            name="previewAns"
+            formControlName="previewAns"
+            value="{{eachTestControl.correct}}"
+            >
+            <!-- name="previewAns{{i}}" -->
+          <h5>
+            <b>Q.{{i + 1}}</b> 
+            {{ eachTestControl.question }}
+          </h5>
+          <hr>
+          <small class="text-dark text-left">Answers:</small>
+          <input 
+            type="checkbox" 
+            id="a{{i}}" 
+            class="radio-hide" 
+            name="ansA"
+            formControlName="ansA"
+            value="A"
+            (click)="radioClickA(i)"
+            #selectedAnswer>
+            <!-- (click)="selectedAnswer.prop(checked = false)" -->
+          <label 
+            for="a{{i}}"
+            class="btn btn-light text-left mb-2">
+            <b>A.</b> {{eachTestControl.ans1}}</label>
+          <input 
+            type="checkbox" 
+            id="b{{i}}" 
+            class="radio-hide" 
+            name="ansB"
+            formControlName="ansB"
+            value="B"
+            (click)="radioClickB(i)"
+            #selectedAnswer>
+          <label 
+            for="b{{i}}"
+            class="btn btn-light text-left mb-2">
+            <b>B.</b> {{eachTestControl.ans2}}</label>
+          <input 
+            type="checkbox" 
+            id="c{{i}}" 
+            class="radio-hide" 
+            name="ansC"
+            formControlName="ansC"
+            value="C"
+            (click)="radioClickC(i)"
+            #selectedAnswer>
+          <label 
+            for="c{{i}}"
+            class="btn btn-light text-left mb-2">
+            <b>C.</b> {{eachTestControl.ans3}}</label>
+          <input 
+            type="checkbox" 
+            id="d{{i}}" 
+            class="radio-hide" 
+            name="ansD"
+            formControlName="ansD"
+            value="D"
+            (click)="radioClickD(i)"
+            #selectedAnswer>
+          <label 
+            for="d{{i}}"
+            class="btn btn-light text-left mb-2">
+            <b>D.</b> {{eachTestControl.ans4}}</label>
+        </div>
       </div>
     </div>
     <hr>
-    <div class="row exam-info text-left">
-      <div class="col-md-3 col-6">
-        Attempted: <span>15</span>
-      </div>
-      <div class="col-md-3 col-6">
-        Ques. Left: <span>10</span>
-      </div>
-      <div class="col-md-3 col-6">
-        Time Left: <span>20 mins</span>
-      </div>
-      <div class="col-md-3 col-6">
-        Correct: <span>2</span>
+    <div class="row">
+      <div class="col-12">
+        <button 
+          type="submit"
+          class="btn btn-success my-3 btn-lg w-100 d-block"
+          >Submit Answers</button>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4 col-md-6 col-12 mb-2"
-      *ngFor="let eachQuestion of allQuestions; let i = index">
-      <div class="card create-question-div my-shadow">
-        <input 
-          type="hidden" 
-          name="preview-answer"
-          value="{{eachQuestion.correct}}"
-          #selectedAnswer>
-        <h5>
-          <b>Q.{{i + 1}}</b> 
-          {{ eachQuestion.question }}
-        </h5>
-        <hr>
-        <small class="text-dark text-left">Answers:</small>
-        <input 
-          type="radio" 
-          id="a{{i}}" 
-          class="radio-hide" 
-          name="ans{{i}}" 
-          value="A">
-        <label 
-          for="a{{i}}"
-          class="btn btn-light text-left mb-2">
-          <b>A.</b> {{eachQuestion.ans1}}</label>
-        <input 
-          type="radio" 
-          id="b{{i}}" 
-          class="radio-hide" 
-          name="ans{{i}}" 
-          value="B">
-        <label 
-          for="b{{i}}"
-          class="btn btn-light text-left mb-2">
-          <b>B.</b> {{eachQuestion.ans2}}</label>
-        <input 
-          type="radio" 
-          id="c{{i}}" 
-          class="radio-hide" 
-          name="ans{{i}}" 
-          value="C">
-        <label 
-          for="c{{i}}"
-          class="btn btn-light text-left mb-2">
-          <b>C.</b> {{eachQuestion.ans3}}</label>
-        <input 
-          type="radio" 
-          id="d{{i}}" 
-          class="radio-hide" 
-          name="ans{{i}}" 
-          value="D">
-        <label 
-          for="d{{i}}"
-          class="btn btn-light text-left mb-2">
-          <b>D.</b> {{eachQuestion.ans4}}</label>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <button 
-        type="button"
-        class="btn btn-success m-3 btn-lg"
-        click=(calculateMarks())
-        >Submit Answers</button>
-    </div>
-  </div>
+    <hr>
+    <p>Your score is: {{'2'}} out of {{ 'full marks'}}</p>
+  </form>
 </div>
