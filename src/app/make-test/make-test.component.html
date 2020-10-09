@@ -4,29 +4,46 @@
   (ngSubmit)="onSubmit()">
   <div class="form-group d-flex select-class-div row my-card"
     formGroupName="examClassDiv">
-    <div class="col-lg-3 col-md-6 col-12">
-      <label for="selectClass" class="exam-class-label">Select Class: </label>
+    <div class="col-lg-3 col-md-3 col-6">
+      <label for="selectClass" class="exam-class-label">Select Class:</label>
       <select 
         class="form-control exam-class" 
         id="selectClass" 
         name="selectClass"
         formControlName="selectClass"
         >
-        <!-- <option disabled selected hidden value="0">Choose class...</option> -->
         <option [ngValue]="null" disabled>Choose class...</option>
-        <option>9</option>
-        <option>8</option>
-        <option>7</option>
-        <option>6</option>
-        <option>5</option>
-        <option>4</option>
-        <option>3</option>
-        <option>2</option>
-        <option>1</option>
+        <option value="9">9</option>
+        <option value="8">8</option>
+        <option value="7">7</option>
+        <option value="6">6</option>
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
       </select>
     </div>
-    <div class="col-lg-3 col-md-6 col-12">
-      <label for="noQues" class="exam-class-label">No. of Question: </label>
+    <div class="col-lg-3 col-md-3 col-6">
+      <label for="selectSubject" class="exam-class-label">Select Subject:</label>
+      <select 
+        class="form-control exam-class" 
+        id="selectSubject" 
+        name="selectSubject"
+        formControlName="selectSubject"
+        >
+        <option [ngValue]="null" disabled>Choose class...</option>
+        <option>Maths</option>
+        <option>Science</option>
+        <option>Hindi</option>
+        <option>Geography</option>
+        <option>History</option>
+        <option>Language</option>
+        <option>Literature</option>
+      </select>
+    </div>
+    <div class="col-lg-2 col-md-2 col-4">
+      <label for="noQues" class="exam-class-label">No. of Ques:</label>
       <input 
         type="number" 
         id="noQues" 
@@ -38,8 +55,8 @@
         (focus)="$event.target.select()"
         #noOfQues>
     </div>
-    <div class="col-lg-3 col-md-6 col-12">
-      <label for="eachQuesMark" class="exam-class-label">Each Question Marks: </label>
+    <div class="col-lg-2 col-md-2 col-4">
+      <label for="eachQuesMark" class="exam-class-label">Each Ques Marks:</label>
       <input 
         type="number" 
         id="eachQuesMark" 
@@ -51,7 +68,7 @@
         (focus)="$event.target.select()"
         #quesMarks>
     </div>
-    <div class="col-lg-3 col-md-6 col-12 full-marks">
+    <div class="col-lg-2 col-md-2 col-4 full-marks">
       <label for="selectClass" class="exam-class-label">Total Marks</label>
       <div class="btn btn-primary d-block">
         {{noOfQues.value*quesMarks.value}}
@@ -60,8 +77,11 @@
   </div>
   <p 
     *ngIf="
-      !testQuestionForm.get('examClassDiv').valid && 
-      testQuestionForm.get('examClassDiv').touched"
+      testQuestionForm.get('examClassDiv.selectClass').touched &&
+      testQuestionForm.get('examClassDiv.selectSubject').touched &&
+      !testQuestionForm.get('examClassDiv').valid ||
+      !testQuestionForm.get('examClassDiv.noQues').valid ||
+      !testQuestionForm.get('examClassDiv.eachQuesMark').valid"
     class="btn btn-danger btn-sm">Please enter class and marks details</p>
   <div 
     class="card my-shadow exam-date-time-div"
@@ -71,7 +91,7 @@
     </div>
     <div class="card-body date-time">
       <div class="form-group row justify-content-between">
-        <div class="col-md-4 col-12">
+        <div class="col-md-4 col-4">
           <label for="examDate">Exam Date</label>
           <input 
             type="date" 
@@ -80,7 +100,7 @@
             name="examDate"
             formControlName="examDate">
         </div>
-        <div class="col-md-4 col-12">
+        <div class="col-md-4 col-4">
           <label for="examStartTime">Start Exam Time</label>
           <input 
             type="time" 
@@ -90,7 +110,7 @@
             formControlName="examStartTime"
             >
         </div>
-        <div class="col-md-4 col-12">
+        <div class="col-md-4 col-4">
           <label for="examEndTime">End Exam Time</label>
           <input 
             type="time" 
@@ -104,9 +124,20 @@
     </div>
   </div>
   <!-- add question -->
+  <div 
+    class="add-question-button"
+    [@popUp]
+    *ngIf="addQuesDiv === false">
+    <button 
+      type="button"
+      class="btn btn-primary mt-3"
+      (click)="addQuesDiv = true">ADD NEW QUESTION</button>
+  </div>
   <div
     class="card create-question-div my-shadow"
-    formGroupName="makeQuestionDiv">
+    formGroupName="makeQuestionDiv"
+    [@popUp]
+    *ngIf="addQuesDiv === true">
     <textarea
       class="form-control exam-question"
       id="makeQuestion"
@@ -202,9 +233,9 @@
     </div>
   </div>
   <div 
-    class="row" 
+    class="row added-ques-div" 
     *ngIf="allQuestions.length > 0">
-    <div class="col-lg-4 col-md-6 col-12"
+    <div class="col-lg-3 col-md-4 col-12"
       [@popUp]
       *ngFor="let eachQuestion of allQuestions; let i = index">
       <div class="card create-question-div my-shadow">
@@ -356,7 +387,7 @@
     </div>
   </div>
   <div 
-    class="modal fade show" 
+    class="modal fade show delete-modal" 
     id="staticBackdrop" 
     *ngIf="deleteMode"
     [@inOutAnimation]
@@ -369,11 +400,10 @@
           <button 
             type="button" 
             (click)="deleteTest() ; editMode = false"
-            class="btn btn-primary">Yes</button>
-            <!-- (click)="deleteTest()" -->
+            class="btn btn-danger btn-yes">Yes</button>
           <button 
             type="button" 
-            class="btn btn-danger"
+            class="btn btn-secondary btn-cancle"
             (click)="deleteMode = false ; editMode = false">Cancle</button>
         </div>
       </div>
@@ -384,9 +414,9 @@
   <button 
     type="submit" 
     class="btn btn-success question-submit"
-    [disabled]="!testQuestionForm.valid"
     (click)="formErrors()"
     >SUBMIT</button>
+    <!-- [disabled]="!testQuestionForm.valid" -->
   <div 
     class="question-counter"
     [@popUp]

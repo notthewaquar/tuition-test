@@ -57,3 +57,46 @@
   font-family: monospace;
   box-shadow: 0 0 7px -1px #000;
 }
+
+.added-ques-div {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.select-class-div > div,
+.exam-date-time-div > div,
+.added-ques-div > div {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.card-body.date-time > div {
+  margin-left: 0;
+  margin-right: 0;
+}
+.card-body.date-time > div > div {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.exam-date-time-div > div .form-group {
+  margin-bottom: 0;
+}
+.delete-modal .modal-content {
+  padding: 10px;
+}
+.delete-modal h5 {
+  padding: 5px 0 10px !important;
+}
+.delete-modal .btn-yes {
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.delete-modal .btn-cancle {
+  border-radius: 5px;
+  margin-left: 10px;
+}
+#eachQuesMark {
+  margin-top: 5px;
+}
+.exam-date-time-div input {
+  font-size: 10px;
+}

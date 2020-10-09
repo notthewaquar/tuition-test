@@ -126,14 +126,23 @@ app-each-question {
   /* height: 100%; */
 }
 .make-test .card-header {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
+  padding: 5px 0 2px;
 }
-.exam-date-time-div label,
 .make-test .exam-class-label {
   align-self: center;
-  font-size: 18px;
+  font-size: 12px;
   margin: 0 0 10px;
+  height: 30px;
+}
+.exam-date-time-div label {
+  font-size: 14px;
+}
+.select-class-div select,
+.select-class-div input,
+.select-class-div .btn {
+  font-size: 12px;
 }
 .date-time label {
   color: #111111;
@@ -210,7 +219,7 @@ app-each-question {
   -moz-user-select: none;
   user-select: none;
   background-color: transparent;
-  border: 1px solid transparent;
+  border: 1px solid #a7a7a7;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
@@ -220,9 +229,14 @@ app-each-question {
   /* height: 30px; */
 }
 @media only screen and (max-width: 770px) {
-  .exam-date-time-div label,
+  .exam-date-time-div label {
+  }
   .make-test .exam-class-label {
-    font-size: 22px;
+    font-size: 14px;
+    height: 40px;
+  }
+  #eachQuesMark {
+    margin-top: 2px;
   }
   .select-class-div select,
   .select-class-div .btn {
@@ -230,13 +244,24 @@ app-each-question {
   }
 }
 @media only screen and (max-width: 500px) {
-  .select-class-div > div:not(.full-marks) {
-    margin-bottom: 20px;
+  .select-class-div > div {
+    margin-bottom: 10px;
   }
   .date-time .row > div {
     margin-bottom: 10px;
   }
-  .make-test .exam-class {
+  .make-test .exam-class-label {
+    font-size: 13px;
+    height: 30px;
+  }
+  .exam-date-time-div label {
+    font-size: 14px;
+  }
+  .select-class-div select {
+    margin: -10px 0 0;
+  }
+  .select-class-div {
+    padding-bottom: 0;
   }
   .select-class-div {
     justify-content: space-between;
@@ -260,4 +285,15 @@ textarea.ng-touched.ng-invalid,
 select.ng-touched.ng-invalid {
   border: 1px solid red;
 }
-/* student test */ ;
+/* student test */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

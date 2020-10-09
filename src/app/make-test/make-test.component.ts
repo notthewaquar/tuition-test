@@ -32,12 +32,12 @@ import { testQuestion } from './testQuestion.model';
       [
         transition(':enter', [
           style({transform: 'scale(0.5)', opacity: .3}),
-          animate('80ms', style({transform: 'scale(1)', opacity: 1}))
-        ]),
-        transition(':leave', [
-          style({transform: 'scale(1)', opacity: 1}),
-          animate('80ms', style({transform: 'scale(0.5)', opacity: .3}))
+          animate('150ms', style({transform: 'scale(1)', opacity: 1}))
         ])
+        // transition(':leave', [
+        //   style({transform: 'scale(1)', opacity: 1}),
+        //   animate('150ms', style({transform: 'scale(0.5)', opacity: .3}))
+        // ])
       ]
     )
   ]
@@ -54,6 +54,8 @@ export class MakeTestComponent implements OnInit, OnDestroy {
   deleteMode = false;
   editedItemIndex: number;
   editedItem: testQuestion;
+  addQuesButton = true;
+  addQuesDiv = false;
 
   constructor(private testQuestionService: TestQuestionService) { }
 
@@ -94,6 +96,7 @@ export class MakeTestComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.pattern(/^[1-9]+[0-9]*$/)
         ]),
+        selectSubject: new FormControl(null, Validators.required)
       }),
       examTimeDiv: new FormGroup({
         examDate: new FormControl(null, Validators.required),
@@ -140,6 +143,7 @@ export class MakeTestComponent implements OnInit, OnDestroy {
     );
     this.testQuestionService.addTestQuestion(newQuestion);
     this.resetQuestion();
+    this.addQuesDiv = false;
   }
   // each question
 
@@ -189,7 +193,10 @@ export class MakeTestComponent implements OnInit, OnDestroy {
     this.testQuestionService.startedEditing.next(index);
   }
   resetQuestion() {
-    this.testQuestionForm.reset();
+    this.testQuestionForm.get('makeQuestionDiv').reset();
+    this.testQuestionForm.get('makeQuestionDiv').patchValue({
+      selectAnswer: 0
+    });
   }
 
   formErrors() {
