@@ -7,8 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
-import { TestQuestionService } from '../testQuestion.service';
-import { testQuestion } from './testQuestion.model';
+import { TestQuestionService } from '../shared/services/test-question.service';
+import { testQuestion } from '../shared/model/test-question.model';
 @Component({
   selector: 'app-make-test',
   templateUrl: './make-test.component.html',

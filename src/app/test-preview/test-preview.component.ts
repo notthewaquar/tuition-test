@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
-import { testQuestion } from '../make-test/testQuestion.model';
-import { TestQuestionService } from '../testQuestion.service';
+import { testQuestion } from '../shared/model/test-question.model';
+import { TestQuestionService } from '../shared/services/test-question.service';
 
 @Component({
   selector: 'app-test-preview',

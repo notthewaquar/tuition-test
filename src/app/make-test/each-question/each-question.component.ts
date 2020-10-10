@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { testQuestion } from '../testQuestion.model';
+import { testQuestion } from '../../shared/model/test-question.model';
 
 @Component({
   selector: 'app-each-question',

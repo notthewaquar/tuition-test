@@ -15,7 +15,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { TestPreviewComponent } from './test-preview/test-preview.component';
 import { HeaderComponent } from './header/header.component';
 // services
-import { TestQuestionService } from './testQuestion.service';
+import { TestQuestionService } from './shared/services/test-question.service';
+// material
+import { MatSliderModule } from '@angular/material/slider';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,14 +31,17 @@ import { TestQuestionService } from './testQuestion.service';
     EachQuestionComponent,
     HomePageComponent,
     TestPreviewComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [
     TestQuestionService

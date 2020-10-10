@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 
-import { testQuestion } from './make-test/testQuestion.model';
+import { testQuestion } from '../model/test-question.model';
 
 export class TestQuestionService {
   testQuestionChanged = new Subject<testQuestion[]>();
